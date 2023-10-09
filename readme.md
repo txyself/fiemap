@@ -1,0 +1,1 @@
+e2fsprogs是一个用于处理 ext2/ext3/ext4 文件系统的工具集。filegrag是e2fsprogs的一个工具，可以获取到指定文件的extent数目及位置信息。
