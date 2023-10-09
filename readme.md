@@ -9,3 +9,5 @@ https://www.kernel.org/doc/Documentation/filesystems/fiemap.txt
 https://man7.org/linux/man-pages/man2/ioctl.2.html
 
 https://man7.org/linux/man-pages/man2/statfs.2.html
+
+https://linux.die.net/man/2/stat

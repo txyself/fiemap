@@ -466,19 +466,20 @@ void get_extent_info(const char *filename, extent_List* extents, unsigned long l
 #ifdef HAVE_FSTAT64
 	if (stat64(filename, &fileinfo) < 0) {
 #else
-	if (stat(filename, &fileinfo) < 0) {
+	if (stat(filename, &fileinfo) < 0) {			// https://linux.die.net/man/2/stat
 #endif
 		perror("stat");
 		return;
 	}
-	if (ioctl(fd, EXT3_IOC_GETFLAGS, &flags) < 0)
+	if (ioctl(fd, EXT3_IOC_GETFLAGS, &flags) < 0)	// https://man7.org/linux/man-pages/man2/ioctl.2.html
 		flags = 0;
 	if (!(flags & EXT4_EXTENTS_FL) &&
 	    ((fsinfo.f_type == 0xef51) || (fsinfo.f_type == 0xef52) ||
-	     (fsinfo.f_type == 0xef53)))					// 没有启用Extents特性，并且是ext2、ext3、ext4
+	     (fsinfo.f_type == 0xef53)))				// 没有启用Extents特性，并且是ext2、ext3、ext4
 		is_ext2++;
 
 	// if (verbose && once) 
+	// 打印对应文件系统类型
 	char *fs_type;
 	switch ((unsigned long)fsinfo.f_type)
 	{
